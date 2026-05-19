@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     echo "---------------- War Publish Started ----------------"
-                    def version = sh(script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true).trim()
+                    
                     def server = Artifactory.newServer url: registry + '/artifactory', credentialsId: 'jfrog'
                     def properties = "buildid=${env.BUILD_ID}, commitid=${GIT_COMMIT}"
                     def uploadSpec = """{
